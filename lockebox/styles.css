@@ -99,6 +99,9 @@ a:focus-visible, button:focus-visible {
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: "Press Start 2P", monospace;
   font-size: 14px;
   line-height: 1.2;
@@ -106,7 +109,15 @@ a:focus-visible, button:focus-visible {
   white-space: nowrap;
 }
 
-.brand span { color: var(--amber); }
+.brand img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.brand:hover { text-decoration: none; }
+.brand-text span { color: var(--amber); }
 
 .nav-links {
   display: flex;
@@ -566,6 +577,43 @@ h3 {
   color: var(--amber);
 }
 
+.pokeball-icon {
+  position: relative;
+  overflow: hidden;
+}
+
+.pokeball-icon::before,
+.pokeball-icon::after {
+  content: "";
+  position: absolute;
+}
+
+.pokeball-icon::before {
+  inset: 7px;
+  border: 2px solid var(--text-primary);
+  border-radius: 50%;
+  background:
+    linear-gradient(
+      to bottom,
+      var(--status-danger) 0,
+      var(--status-danger) 43%,
+      var(--text-primary) 43%,
+      var(--text-primary) 57%,
+      var(--bg1) 57%,
+      var(--bg1) 100%
+    );
+}
+
+.pokeball-icon::after {
+  width: 8px;
+  height: 8px;
+  left: 12px;
+  top: 12px;
+  border: 2px solid var(--text-primary);
+  border-radius: 50%;
+  background: var(--bg1);
+}
+
 .card p,
 .card li {
   color: var(--text-secondary);
@@ -580,6 +628,36 @@ h3 {
 
 .check-list li { margin-bottom: 8px; }
 
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.game-chip {
+  border: 1px solid var(--bg3);
+  border-radius: var(--radius-small);
+  background: var(--bg2);
+  padding: 14px;
+}
+
+.game-chip strong {
+  display: block;
+  color: var(--text-primary);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.game-chip span {
+  display: block;
+  margin-top: 4px;
+  color: var(--text-muted);
+  font-size: 11px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
 .band {
   border-top: 1px solid var(--bg3);
   border-bottom: 1px solid var(--bg3);
@@ -588,7 +666,7 @@ h3 {
 
 .alpha-box {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -652,6 +730,69 @@ h3 {
   font-size: 14px;
 }
 
+.contact-hero {
+  min-height: calc(100vh - 140px);
+}
+
+.contact-panel {
+  display: flex;
+  min-height: 274px;
+  flex-direction: column;
+}
+
+.contact-readout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid var(--bg3);
+  border-radius: var(--radius-small);
+  background: var(--bg1);
+  padding: 18px;
+}
+
+.contact-readout .material-symbols-outlined {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-small);
+  background: var(--bg3);
+  color: var(--amber);
+}
+
+.contact-readout strong {
+  color: var(--text-primary);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 14px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.contact-readout p {
+  margin-bottom: 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.contact-cta {
+  border-top: 1px solid var(--bg3);
+  background: var(--bg1);
+}
+
+.contact-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.contact-cta h2 {
+  margin-bottom: 0;
+}
+
 .footer {
   border-top: 1px solid var(--bg3);
   padding: 28px 24px;
@@ -665,12 +806,18 @@ h3 {
   .screen-grid,
   .grid,
   .two-grid,
+  .games-grid,
   .alpha-box {
     grid-template-columns: 1fr;
   }
 
   .hero {
     padding-top: 52px;
+  }
+
+  .contact-cta-inner {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
 

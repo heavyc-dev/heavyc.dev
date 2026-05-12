@@ -1,5 +1,7 @@
 # LockeBox Downloads
 
-Place the Windows alpha installer here as:
+Place alpha builds here as:
 
 `LockeBox-Alpha-Setup.exe`
+
+`LockeBox-Alpha.apk`

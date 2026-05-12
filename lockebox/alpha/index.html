@@ -4,17 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LockeBox Alpha Testing</title>
-  <meta name="description" content="Join the LockeBox alpha for Windows and iOS TestFlight builds." />
+  <meta name="description" content="Join the LockeBox alpha for Windows, Android, and iOS TestFlight builds." />
   <link rel="canonical" href="https://heavyc.dev/lockebox/alpha/" />
+  <link rel="icon" href="/lockebox/lockebox_logo.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/lockebox/lockebox_logo.png" />
   <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
   <header class="site-header">
     <nav class="nav" aria-label="LockeBox">
-      <a class="brand" href="/lockebox/" aria-label="LockeBox home">LOCKE<span>BOX</span></a>
+      <a class="brand" href="/lockebox/" aria-label="LockeBox home">
+        <img src="/lockebox/lockebox_logo.png" alt="" />
+        <span class="brand-text">LOCKE<span>BOX</span></span>
+      </a>
       <div class="nav-links">
         <a href="/lockebox/">Overview</a>
         <a href="/lockebox/alpha/" aria-current="page">Alpha</a>
+        <a href="/lockebox/contact/">Contact me</a>
       </div>
     </nav>
   </header>
@@ -25,7 +31,7 @@
         <p class="eyebrow">Alpha Testing</p>
         <h1>Join the run.</h1>
         <p class="lead">Help test LockeBox while the MVP is still being built. Alpha builds are for players who are comfortable with rough edges and useful bug reports.</p>
-        <p class="copy">The alpha will focus on emulator stability, save handling, tracker flow, encounter logging, Windows install behavior, and iOS device feedback through TestFlight.</p>
+        <p class="copy">The alpha will focus on emulator stability, save handling, tracker flow, encounter logging, Windows and Android install behavior, and iOS device feedback through TestFlight.</p>
       </div>
 
       <aside class="device" aria-label="Alpha readiness preview">
@@ -53,6 +59,13 @@
               <div class="types"><span class="type water">Invite</span></div>
             </div>
           </div>
+          <div class="team-card">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png" alt="Pixel sprite preview" />
+            <div>
+              <div class="team-name">ANDROID <span>APK</span></div>
+              <div class="types"><span class="type grass">Alpha</span></div>
+            </div>
+          </div>
           <div class="route-row">
             <span class="dot" aria-hidden="true"></span>
             <strong>Feedback loop</strong>
@@ -67,7 +80,7 @@
         <div class="section-header">
           <p class="kicker">Install</p>
           <h2>Choose your alpha build.</h2>
-          <p class="copy">Alpha files will live here as builds are published. Windows uses a hosted installer, while iOS testers join through Apple TestFlight.</p>
+          <p class="copy">Alpha files will live here as builds are published. Windows and Android use hosted downloads, while iOS testers join through Apple TestFlight.</p>
         </div>
 
         <div class="alpha-box">
@@ -93,20 +106,38 @@
           <article class="platform-card">
             <div>
               <header>
+                <h3>Android Alpha</h3>
+                <span class="material-symbols-outlined" aria-hidden="true">android</span>
+              </header>
+              <p class="copy">Download the current Android APK and install it on a test device. You may need to allow installs from your browser or file manager.</p>
+              <div class="meta-list" aria-label="Android build details">
+                <div><span>Target</span><strong>Android</strong></div>
+                <div><span>Architecture</span><strong>Universal APK</strong></div>
+                <div><span>Package</span><strong>APK</strong></div>
+              </div>
+            </div>
+            <a class="button primary" href="/lockebox/downloads/LockeBox-Alpha.apk" download>
+              <span class="material-symbols-outlined" aria-hidden="true">download</span>
+              Download APK
+            </a>
+          </article>
+
+          <article class="platform-card">
+            <div>
+              <header>
                 <h3>iOS TestFlight</h3>
                 <span class="material-symbols-outlined" aria-hidden="true">phone_iphone</span>
               </header>
-              <p class="copy">Join the iOS alpha through TestFlight when the public group link is available.</p>
+              <p class="copy">Join the iOS alpha directly through Apple's TestFlight group link.</p>
               <div class="meta-list" aria-label="iOS build details">
                 <div><span>Target</span><strong>iPhone</strong></div>
                 <div><span>Channel</span><strong>TestFlight</strong></div>
                 <div><span>Seats</span><strong>Limited</strong></div>
               </div>
             </div>
-            <!-- Replace this mail link with the public TestFlight URL once Apple provides it. -->
-            <a class="button secondary" href="mailto:dev@heavyc.dev?subject=LockeBox%20iOS%20TestFlight%20Alpha">
+            <a class="button secondary" href="https://testflight.apple.com/join/KXYPmBD3">
               <span class="material-symbols-outlined" aria-hidden="true">ios_share</span>
-              Request TestFlight access
+              Join TestFlight
             </a>
           </article>
         </div>
@@ -114,24 +145,41 @@
     </section>
 
     <section class="section">
-      <div class="two-grid">
-        <article class="card">
-          <span class="icon material-symbols-outlined" aria-hidden="true">assignment</span>
-          <h3>What to test</h3>
-          <ul class="check-list">
-            <li>App launch, update, and install behavior.</li>
-            <li>ROM loading with files you legally provide.</li>
-            <li>Save state behavior, in-game saves, and resume flow.</li>
-            <li>Tracker flow for team, routes, deaths, badges, and level caps.</li>
-            <li>Anything that feels slow, confusing, or brittle.</li>
-          </ul>
-        </article>
-        <article class="card">
-          <span class="icon material-symbols-outlined" aria-hidden="true">bug_report</span>
-          <h3>How to report issues</h3>
-          <p>Email <a href="mailto:dev@heavyc.dev?subject=LockeBox%20Alpha%20Feedback">dev@heavyc.dev</a> with your platform, build version, what you expected, what happened, and the shortest steps that reproduce the issue.</p>
-          <p>Do not send ROMs, BIOS files, or copyrighted game files in bug reports.</p>
-        </article>
+      <div class="section-header">
+        <p class="kicker">Supported Games</p>
+        <h2>Use the alpha with supported Gen III runs.</h2>
+        <p class="copy">Alpha feedback is most useful when it comes from the games LockeBox has active data support for.</p>
+      </div>
+      <div class="games-grid" aria-label="Supported games">
+        <div class="game-chip"><strong>Emerald</strong><span>Hoenn</span></div>
+        <div class="game-chip"><strong>Ruby</strong><span>Hoenn</span></div>
+        <div class="game-chip"><strong>Sapphire</strong><span>Hoenn</span></div>
+        <div class="game-chip"><strong>Fire Red</strong><span>Kanto</span></div>
+        <div class="game-chip"><strong>Leaf Green</strong><span>Kanto</span></div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="section">
+        <div class="two-grid">
+          <article class="card">
+            <span class="icon material-symbols-outlined" aria-hidden="true">assignment</span>
+            <h3>What to test</h3>
+            <ul class="check-list">
+              <li>App launch, update, and install behavior.</li>
+              <li>ROM loading with files you legally provide.</li>
+              <li>Save state behavior, in-game saves, and resume flow.</li>
+              <li>Tracker flow for team, routes, deaths, badges, and level caps.</li>
+              <li>Anything that feels slow, confusing, or brittle.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <span class="icon material-symbols-outlined" aria-hidden="true">bug_report</span>
+            <h3>How to report issues</h3>
+            <p>Email <a href="mailto:dev@heavyc.dev?subject=LockeBox%20Alpha%20Feedback">dev@heavyc.dev</a> with your platform, build version, what you expected, what happened, and the shortest steps that reproduce the issue.</p>
+            <p>Do not send ROMs, BIOS files, or copyrighted game files in bug reports.</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -140,6 +188,19 @@
         <div class="notice">
           LockeBox alpha builds are unfinished software. Back up your saves before testing, expect bugs, and only use game files and BIOS files that you are legally allowed to use.
         </div>
+      </div>
+    </section>
+
+    <section class="contact-cta">
+      <div class="section contact-cta-inner">
+        <div>
+          <p class="kicker">Contact</p>
+          <h2>Questions or alpha feedback?</h2>
+        </div>
+        <a class="button primary" href="mailto:dev@heavyc.dev?subject=LockeBox%20Alpha%20Feedback">
+          <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+          Contact me
+        </a>
       </div>
     </section>
   </main>
