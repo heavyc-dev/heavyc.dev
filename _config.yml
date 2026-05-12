@@ -10,3 +10,7 @@ author:
 
 plugins:
   - jekyll-seo-tag
+
+exclude:
+  - PROJECT_SPEC.md
+  - VISUAL_SYSTEM.md

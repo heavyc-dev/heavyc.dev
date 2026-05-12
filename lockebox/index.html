@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LockeBox | Nuzlocke Emulator and Tracker</title>
+  <meta name="description" content="LockeBox is a cross-platform emulator built around Nuzlocke runs, with save-aware tracking, encounter logging, team management, and route tools." />
+  <link rel="canonical" href="https://heavyc.dev/lockebox/" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="LockeBox">
+      <a class="brand" href="/lockebox/" aria-label="LockeBox home">LOCKE<span>BOX</span></a>
+      <div class="nav-links">
+        <a href="/lockebox/" aria-current="page">Overview</a>
+        <a href="/lockebox/alpha/">Alpha</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Heavy C Development Studio</p>
+        <h1>LockeBox</h1>
+        <p class="lead">A GBA and DS emulator purpose-built for Nuzlocke runs. The tracker is not bolted on. It is the product.</p>
+        <p class="copy">LockeBox is designed for challenge runners who need the emulator, save data, encounters, box, graveyard, level caps, and battle planning to understand the same run at the same time.</p>
+        <div class="actions">
+          <a class="button primary" href="/lockebox/alpha/">
+            <span class="material-symbols-outlined" aria-hidden="true">flag</span>
+            Join the alpha
+          </a>
+          <a class="button secondary" href="#overview">
+            <span class="material-symbols-outlined" aria-hidden="true">sync</span>
+            Read overview
+          </a>
+        </div>
+        <div class="status-strip" aria-label="Project status">
+          <div class="status-chip"><strong>MVP</strong><span>In development</span></div>
+          <div class="status-chip"><strong>GBA first</strong><span>mGBA core target</span></div>
+          <div class="status-chip"><strong>Local</strong><span>No accounts or ads</span></div>
+        </div>
+      </div>
+
+      <aside class="device" aria-label="LockeBox interface preview">
+        <div class="device-top">
+          <span>RUN: EMERALD-ALPHA</span>
+          <span class="leds" aria-hidden="true"><i class="led alive"></i><i class="led warn"></i><i class="led danger"></i></span>
+        </div>
+        <div class="screen-grid">
+          <div class="game-screen">
+            <div class="battle-card">
+              <div class="name"><strong>RIVAL</strong><span>Lv.24</span></div>
+              <div class="hp" aria-hidden="true"><span style="width: 68%;"></span></div>
+            </div>
+            <div class="sprite-row">
+              <img class="sprite" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/25.png" alt="Pixel sprite preview" />
+              <img class="sprite" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/254.png" alt="Pixel sprite preview" />
+            </div>
+          </div>
+          <div class="tracker-panel">
+            <div class="panel-tabs" aria-hidden="true">
+              <span class="active">Team</span>
+              <span>Routes</span>
+              <span>Lines</span>
+            </div>
+            <div class="team-card">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/emerald/254.png" alt="Pixel sprite preview" />
+              <div>
+                <div class="team-name">BLADE <span>Lv.31</span></div>
+                <div class="types"><span class="type grass">Grass</span></div>
+              </div>
+            </div>
+            <div class="team-card">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png" alt="Pixel sprite preview" />
+              <div>
+                <div class="team-name">RIPTIDE <span>Lv.29</span></div>
+                <div class="types"><span class="type water">Water</span><span class="type flying">Flying</span></div>
+              </div>
+            </div>
+            <div class="route-row">
+              <span class="dot" aria-hidden="true"></span>
+              <strong>Route 118</strong>
+              <span>Unclaimed</span>
+            </div>
+          </div>
+        </div>
+        <div class="mini-panel">
+          <div class="handle"><span>Deaths</span><strong>02</strong><span>LVL 31 CAP</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="band" id="overview">
+      <div class="section">
+        <div class="section-header">
+          <p class="kicker">Overview</p>
+          <h2>The emulator that understands the run.</h2>
+          <p class="copy">Every emulator feature exists in service of the Nuzlocke experience: tracking the route, protecting the history of the run, and helping players make better decisions without leaving the game.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="icon material-symbols-outlined" aria-hidden="true">stadia_controller</span>
+            <h3>Play and track in one place</h3>
+            <p>Load a user-supplied GBA or DS ROM, play normally, and keep the tracker beside the game instead of juggling a spreadsheet and an emulator.</p>
+          </article>
+          <article class="card">
+            <span class="icon material-symbols-outlined" aria-hidden="true">sync</span>
+            <h3>Save-aware data</h3>
+            <p>LockeBox is being built to parse save files for party, box, levels, stats, moves, met locations, IVs, EVs, nature, and more.</p>
+          </article>
+          <article class="card">
+            <span class="icon material-symbols-outlined" aria-hidden="true">catching_pokemon</span>
+            <h3>Nuzlocke-first tools</h3>
+            <p>Encounter logging, death tracking, badge and level cap tracking, graveyard history, route notes, and run metrics are core surfaces.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <p class="kicker">MVP Scope</p>
+        <h2>Built for serious challenge runners.</h2>
+      </div>
+      <div class="two-grid">
+        <article class="card">
+          <h3>First playable target</h3>
+          <p>The MVP focuses on GBA emulation, manual and automatic save workflows, on-screen controls, save states, fast forward, and game data for Emerald and FireRed.</p>
+        </article>
+        <article class="card">
+          <h3>Tracker surfaces</h3>
+          <p>Team, box, graveyard, routes, badges, level caps, stat viewer, line builder, and run history are planned as first-class parts of the app.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="section">
+        <div class="section-header">
+          <p class="kicker">Principles</p>
+          <h2>Local-first, open, and player-owned.</h2>
+          <p class="copy">The planned app is free and open source, with no ads, no required account, no telemetry, and no ROM distribution. Players provide their own game files and keep their run data on their own devices.</p>
+        </div>
+        <div class="actions">
+          <a class="button primary" href="/lockebox/alpha/">
+            <span class="material-symbols-outlined" aria-hidden="true">flag</span>
+            Alpha testing
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    &copy; 2026 Heavy C Development Studio, LLC. LockeBox does not include ROMs, BIOS files, or copyrighted game content.
+  </footer>
+</body>
+</html>
