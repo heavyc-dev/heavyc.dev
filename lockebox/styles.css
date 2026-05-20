@@ -781,16 +781,24 @@ h3 {
   font-size: 13px;
 }
 
+
 .contact-cta {
   border-top: 1px solid var(--bg3);
   background: var(--bg1);
+  width: 100%;
 }
+
 
 .contact-cta-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+  padding: 40px 24px;
+  box-sizing: border-box;
 }
 
 .contact-cta h2 {
