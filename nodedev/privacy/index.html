@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>node.dev — Privacy Policy</title>
+  <meta name="description" content="node.dev privacy policy. node.dev has no backend, collects no telemetry, and keeps your keys, sessions, and data on your own devices." />
+  <link rel="canonical" href="https://heavyc.dev/nodedev/privacy/" />
+  <link rel="icon" href="/nodedev/nodedev-logo.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/nodedev/nodedev-logo.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0e14; --surface: #111722; --surface-2: #0e141d; --border: #1c2533;
+      --accent: #36e2a4; --accent-dim: #1f9f72; --accent-2: #4aa8ff;
+      --text: #e6edf3; --muted: #8b97a7; --radius: 8px;
+      --mono: "SF Mono", ui-monospace, "JetBrains Mono", "Cascadia Code", Menlo, Consolas, monospace;
+    }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .site-header { background: rgba(10,14,20,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav { max-width: 760px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-weight: 700; font-size: 1.05rem; color: var(--text); }
+    .brand:hover { text-decoration: none; }
+    .brand img { width: 26px; height: 26px; border-radius: 6px; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 24px; font-size: 0.875rem; }
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-links a[aria-current="page"] { color: var(--text); }
+
+    main { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .page-head { padding: 64px 0 32px; border-bottom: 1px solid var(--border); }
+    .eyebrow { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    h1 { font-size: clamp(2.2rem, 5vw, 2.8rem); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 14px; }
+    h1 .dot { color: var(--accent); }
+    .updated { color: var(--muted); font-size: 0.88rem; font-family: var(--mono); }
+    .tldr { background: var(--surface); border: 1px solid var(--accent-dim); border-radius: var(--radius); padding: 20px 24px; margin: 32px 0; }
+    .tldr strong { color: var(--accent); }
+    .tldr p { margin: 0; color: var(--text); }
+
+    h2 { font-size: 1.3rem; font-weight: 800; margin: 40px 0 12px; letter-spacing: -0.01em; }
+    p { color: var(--muted); margin-bottom: 14px; }
+    p .hl { color: var(--text); font-weight: 600; }
+    ul { list-style: none; padding: 0; margin: 0 0 16px; }
+    ul li { color: var(--muted); padding-left: 22px; position: relative; margin-bottom: 10px; }
+    ul li::before { content: "›"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+    code { font-family: var(--mono); font-size: 0.86em; background: var(--surface); border: 1px solid var(--border); border-radius: 5px; padding: 2px 6px; color: var(--accent); }
+
+    footer { text-align: center; padding: 32px 24px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 56px; }
+    footer a { color: var(--muted); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 16px; font-size: 0.85rem; }
+    .footer-links a:hover { color: var(--text); }
+
+    @media (max-width: 700px) { .nav-links { gap: 14px; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="node.dev">
+      <a class="brand" href="/nodedev/"><img src="/nodedev/nodedev-logo.png" alt="" />node<span>.dev</span></a>
+      <div class="nav-links">
+        <a href="/nodedev/setup/">Setup</a>
+        <a href="/nodedev/support/">Support</a>
+        <a href="/nodedev/privacy/" aria-current="page">Privacy</a>
+        <a href="/nodedev/contact/">Contact me</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-head">
+      <p class="eyebrow">Privacy Policy</p>
+      <h1>Your data stays yours<span class="dot">.</span></h1>
+      <p class="updated">Last updated: May 28, 2026</p>
+    </div>
+
+    <div class="tldr">
+      <p><strong>In short:</strong> node.dev has no backend and no servers. It collects no analytics or telemetry. Your SSH keys, connection details, session history, and the work you do all stay on your own devices and your own machine. Nothing is sent to Heavy C Development Studio.</p>
+    </div>
+
+    <h2>Who this covers</h2>
+    <p>This policy describes how the node.dev iPhone app, published by <span class="hl">Heavy C Development Studio, LLC</span> ("we", "us"), handles your information. It applies to the app and this website.</p>
+
+    <h2>What we collect</h2>
+    <p><span class="hl">Nothing.</span> node.dev has no account system, no backend service, and no analytics SDKs. We do not collect, store, transmit, sell, or share any personal information. We have no servers that could receive your data.</p>
+
+    <h2>Data that stays on your device</h2>
+    <p>node.dev stores the following locally on your iPhone, never transmitted to us:</p>
+    <ul>
+      <li><span class="hl">SSH keys.</span> Your private key is generated on-device and stored in the iPhone's hardware-backed Keychain, locked behind Face ID / Touch ID. It is never uploaded, synced, or exported by the app.</li>
+      <li><span class="hl">Host and connection details.</span> The hostnames, IPs, usernames, and ports you save stay in local app storage.</li>
+      <li><span class="hl">Session history and terminal scrollback.</span> Kept on the device for your convenience and never sent off it.</li>
+      <li><span class="hl">App settings and project organization.</span> Stored locally.</li>
+    </ul>
+
+    <h2>How your connection works</h2>
+    <p>node.dev connects to your own computer directly over <span class="hl">Tailscale</span>, an encrypted private mesh network. Your traffic goes from your phone to your PC — it does not pass through us. Your machine is never exposed to the public internet.</p>
+    <p>Tailscale is a third-party service with its own privacy policy. node.dev does not control Tailscale and does not receive any data from it.</p>
+
+    <h2>Codie (AI agent)</h2>
+    <p>Codie runs on <span class="hl">your machine</span> and operates on your local codebase. Commands and file changes happen on your own computer. On supported iPhones, Apple Intelligence may run on-device to make Codie's conversational voice sound natural — this processing stays on your device and is used only for conversation, never to make decisions about your code or to send your code anywhere.</p>
+
+    <h2>Crash logs and diagnostics</h2>
+    <p>Any crash logs or diagnostics are stored locally and are shared only if <span class="hl">you</span> explicitly choose to send them. We do not collect them automatically.</p>
+
+    <h2>Children's privacy</h2>
+    <p>node.dev is a developer tool not directed at children, and because we collect no data, we do not knowingly collect information from anyone, including children under 13.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>If this policy changes, we will update this page and revise the "last updated" date above.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about privacy? Email <a href="mailto:dev@heavyc.dev?subject=node.dev%20Privacy">dev@heavyc.dev</a>.</p>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/nodedev/setup/">Setup</a>
+      <a href="/nodedev/support/">Support</a>
+      <a href="/nodedev/privacy/">Privacy</a>
+      <a href="/nodedev/contact/">Contact</a>
+    </div>
+    &copy; 2026 Heavy C Development Studio, LLC. All rights reserved.
+  </footer>
+</body>
+</html>

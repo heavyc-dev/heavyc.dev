@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>node.dev — Support &amp; FAQ</title>
+  <meta name="description" content="node.dev support and frequently asked questions: requirements, Tailscale, security, Codie, troubleshooting, and how to get help." />
+  <link rel="canonical" href="https://heavyc.dev/nodedev/support/" />
+  <link rel="icon" href="/nodedev/nodedev-logo.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/nodedev/nodedev-logo.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0e14; --surface: #111722; --surface-2: #0e141d; --border: #1c2533;
+      --accent: #36e2a4; --accent-dim: #1f9f72; --accent-2: #4aa8ff;
+      --text: #e6edf3; --muted: #8b97a7; --radius: 8px;
+      --mono: "SF Mono", ui-monospace, "JetBrains Mono", "Cascadia Code", Menlo, Consolas, monospace;
+    }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .site-header { background: rgba(10,14,20,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav { max-width: 800px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-weight: 700; font-size: 1.05rem; color: var(--text); }
+    .brand:hover { text-decoration: none; }
+    .brand img { width: 26px; height: 26px; border-radius: 6px; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 24px; font-size: 0.875rem; }
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-links a[aria-current="page"] { color: var(--text); }
+
+    main { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+    .page-head { padding: 64px 0 32px; }
+    .eyebrow { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    h1 { font-size: clamp(2.2rem, 5vw, 2.9rem); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 14px; }
+    h1 .dot { color: var(--accent); }
+    .lead { color: var(--muted); font-size: 1.1rem; max-width: 58ch; }
+
+    .faq-group { border-top: 1px solid var(--border); padding: 32px 0 8px; }
+    .group-title { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; }
+    details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 12px; overflow: hidden; }
+    details[open] { border-color: var(--accent-dim); }
+    summary { cursor: pointer; padding: 16px 20px; font-weight: 600; color: var(--text); list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; font-family: var(--mono); color: var(--accent); font-size: 1.2rem; line-height: 1; flex-shrink: 0; }
+    details[open] summary::after { content: "−"; }
+    .answer { padding: 0 20px 18px; color: var(--muted); }
+    .answer p { margin: 0 0 10px; }
+    .answer p:last-child { margin-bottom: 0; }
+    .answer .hl { color: var(--text); font-weight: 600; }
+    .answer a { color: var(--accent); }
+    code { font-family: var(--mono); font-size: 0.86em; background: var(--surface-2); border: 1px solid var(--border); border-radius: 5px; padding: 2px 6px; color: var(--accent); }
+
+    .help-cta { border-top: 1px solid var(--border); margin-top: 24px; padding: 48px 0; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; }
+    .help-cta h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 4px; }
+    .help-cta p { color: var(--muted); margin: 0; }
+    .button { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: var(--radius); font-weight: 700; font-size: 0.9rem; transition: transform 0.12s ease, background 0.12s ease; }
+    .button:hover { text-decoration: none; transform: translateY(-1px); }
+    .button.primary { background: var(--accent); color: #04140d; }
+    .button.primary:hover { background: #4cf0b4; }
+
+    footer { text-align: center; padding: 32px 24px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
+    footer a { color: var(--muted); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 16px; font-size: 0.85rem; }
+    .footer-links a:hover { color: var(--text); }
+
+    @media (max-width: 700px) { .nav-links { gap: 14px; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="node.dev">
+      <a class="brand" href="/nodedev/"><img src="/nodedev/nodedev-logo.png" alt="" />node<span>.dev</span></a>
+      <div class="nav-links">
+        <a href="/nodedev/#features">Features</a>
+        <a href="/nodedev/setup/">Setup</a>
+        <a href="/nodedev/support/" aria-current="page">Support</a>
+        <a href="/nodedev/contact/">Contact me</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-head">
+      <p class="eyebrow">Support &amp; FAQ</p>
+      <h1>Questions, answered<span class="dot">.</span></h1>
+      <p class="lead">Common questions about requirements, setup, security, and Codie. Still stuck? Email is the fastest way to reach me.</p>
+    </div>
+
+    <section class="faq-group">
+      <p class="group-title">Getting started</p>
+
+      <details>
+        <summary>What do I need to use node.dev?</summary>
+        <div class="answer">
+          <p>An <span class="hl">iPhone</span> running node.dev, a <span class="hl">Windows PC</span> you want to reach, and a free <span class="hl">Tailscale</span> account signed in on both devices. The app walks you through the rest during onboarding.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Is node.dev available yet?</summary>
+        <div class="answer">
+          <p>node.dev is launching on <span class="hl">TestFlight beta</span> and the <span class="hl">App Store</span> — coming soon. <a href="/nodedev/contact/">Email me</a> if you'd like to be notified.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How do I set up my PC?</summary>
+        <div class="answer">
+          <p>The full walkthrough is on the <a href="/nodedev/setup/">setup page</a>: install Tailscale, run the setup script, pair your key, and add your host.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Do I need a Mac?</summary>
+        <div class="answer">
+          <p>No. node.dev runs on your iPhone and connects to a <span class="hl">Windows PC</span>. Other server platforms may follow, but the current target is Windows.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="faq-group">
+      <p class="group-title">Connection &amp; Tailscale</p>
+
+      <details>
+        <summary>Why does node.dev require Tailscale?</summary>
+        <div class="answer">
+          <p>Tailscale gives you a <span class="hl">private, encrypted</span> link between your phone and PC without exposing your machine to the public internet. It is the safest way to reach your computer from anywhere, and it needs no port forwarding or static IP.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>The key push failed. What now?</summary>
+        <div class="answer">
+          <p>Make sure the PowerShell setup window is <span class="hl">still open</span> — it waits up to 10 minutes for your key. If you use custom Tailscale ACLs, confirm your phone can reach the PC on ports <code>22</code> and <code>9922</code>. As a fallback, copy the public key from the app and paste it into the <code>authorized_keys</code> file the script created.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>My connection dropped — did I lose my work?</summary>
+        <div class="answer">
+          <p>No, if you're using <span class="hl">tmux</span>. Sessions are kept alive across dropped connections, locked phones, and reconnects. Reconnect and pick up where you left off. See the <a href="/nodedev/setup/">setup page</a> for the optional WSL + tmux steps.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="faq-group">
+      <p class="group-title">Security &amp; privacy</p>
+
+      <details>
+        <summary>Where are my SSH keys stored?</summary>
+        <div class="answer">
+          <p>Your private key is generated on-device and stored in the iPhone's <span class="hl">hardware-backed Keychain</span>, locked behind Face ID / Touch ID. It is never uploaded, synced, or exported.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Does node.dev collect any data?</summary>
+        <div class="answer">
+          <p>No. node.dev has <span class="hl">no backend, no telemetry, and no analytics</span>. Your keys, connection details, history, and work all stay on your devices. See the <a href="/nodedev/privacy/">privacy policy</a>.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Is it safe to run the setup script as Administrator?</summary>
+        <div class="answer">
+          <p>Yes. It needs elevation to install the OpenSSH server and edit firewall rules. It locks SSH to your Tailscale network, enables key-only auth, never truncates existing keys, and is safe to re-run. You can <a href="/nodedev/setup/setup.ps1" download>download and read it</a> before running.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="faq-group">
+      <p class="group-title">Codie (AI agent)</p>
+
+      <details>
+        <summary>What is Codie?</summary>
+        <div class="answer">
+          <p>Codie is a chat-based AI coding agent that lives on your phone but <span class="hl">runs on your machine</span>. Describe what you want in plain language; Codie reads files, runs commands, makes edits, and works with git on your real project.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Can Codie do things without my approval?</summary>
+        <div class="answer">
+          <p>You control its access <span class="hl">per project</span> — from read-only, to edit and git, to full autonomy. Codie asks for approval before sensitive actions, and each turn shows what it did, how long it took, and what it cost.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Is my code sent to the cloud?</summary>
+        <div class="answer">
+          <p>Codie operates on your live project on your own machine. On supported iPhones, on-device Apple Intelligence makes Codie's voice sound natural — that processing stays on the device and is used only for conversation, never to send your code anywhere.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="help-cta">
+      <div>
+        <h2>Didn't find your answer?</h2>
+        <p>Email is the fastest way to reach me with bugs, feedback, or questions.</p>
+      </div>
+      <a class="button primary" href="mailto:dev@heavyc.dev?subject=node.dev%20Support">Email dev@heavyc.dev</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/nodedev/setup/">Setup</a>
+      <a href="/nodedev/support/">Support</a>
+      <a href="/nodedev/privacy/">Privacy</a>
+      <a href="/nodedev/contact/">Contact</a>
+    </div>
+    &copy; 2026 Heavy C Development Studio, LLC. All rights reserved.
+  </footer>
+</body>
+</html>

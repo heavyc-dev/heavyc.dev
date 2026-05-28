@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>node.dev — PC Setup &amp; Install</title>
+  <meta name="description" content="Connect node.dev on iPhone to your Windows PC over Tailscale in a few steps: install Tailscale, run the setup script, pair your key, and connect." />
+  <link rel="canonical" href="https://heavyc.dev/nodedev/setup/" />
+  <link rel="icon" href="/nodedev/nodedev-logo.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/nodedev/nodedev-logo.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0e14; --surface: #111722; --surface-2: #0e141d; --border: #1c2533;
+      --accent: #36e2a4; --accent-dim: #1f9f72; --accent-2: #4aa8ff;
+      --text: #e6edf3; --muted: #8b97a7; --radius: 8px;
+      --mono: "SF Mono", ui-monospace, "JetBrains Mono", "Cascadia Code", Menlo, Consolas, monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.65; font-size: 16px; -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .site-header { background: rgba(10,14,20,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .nav { max-width: 880px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-weight: 700; font-size: 1.05rem; color: var(--text); }
+    .brand:hover { text-decoration: none; }
+    .brand img { width: 26px; height: 26px; border-radius: 6px; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 24px; font-size: 0.875rem; }
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-links a[aria-current="page"] { color: var(--text); }
+
+    main { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+    .page-head { padding: 64px 0 40px; }
+    .eyebrow { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    h1 { font-size: clamp(2.2rem, 5vw, 3rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 16px; }
+    h1 .dot { color: var(--accent); }
+    .lead { font-size: 1.15rem; color: var(--muted); max-width: 60ch; }
+
+    .req { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 28px 0 8px; }
+    .req-chip { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; font-size: 0.85rem; }
+    .req-chip strong { display: block; color: var(--text); font-family: var(--mono); margin-bottom: 2px; }
+    .req-chip span { color: var(--muted); }
+
+    .step { border-top: 1px solid var(--border); padding: 40px 0; }
+    .step-num { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 14px; }
+    h3 { font-size: 1.05rem; font-weight: 700; margin: 24px 0 8px; }
+    p { color: var(--muted); margin-bottom: 14px; }
+    p .hl { color: var(--text); font-weight: 600; }
+    code { font-family: var(--mono); font-size: 0.86em; background: var(--surface); border: 1px solid var(--border); border-radius: 5px; padding: 2px 6px; color: var(--accent); }
+
+    ul.list { list-style: none; padding: 0; margin: 0 0 14px; }
+    ul.list li { color: var(--muted); padding-left: 22px; position: relative; margin-bottom: 8px; }
+    ul.list li::before { content: "›"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+    ol.steps-list { padding-left: 20px; margin: 0 0 14px; color: var(--muted); }
+    ol.steps-list li { margin-bottom: 8px; padding-left: 4px; }
+
+    .download { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin: 8px 0 4px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+    .download .d-info strong { display: block; color: var(--text); margin-bottom: 4px; }
+    .download .d-info span { color: var(--muted); font-size: 0.88rem; }
+    .button { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: var(--radius); font-weight: 700; font-size: 0.9rem; transition: transform 0.12s ease, background 0.12s ease; white-space: nowrap; }
+    .button:hover { text-decoration: none; transform: translateY(-1px); }
+    .button.primary { background: var(--accent); color: #04140d; }
+    .button.primary:hover { background: #4cf0b4; }
+
+    .callout { border-left: 3px solid var(--accent); background: var(--surface-2); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 18px; margin: 16px 0; }
+    .callout p { margin: 0; color: var(--text); font-size: 0.92rem; }
+    .callout.warn { border-left-color: #febc2e; }
+    .callout strong { color: var(--text); }
+
+    pre { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; overflow-x: auto; margin: 0 0 14px; }
+    pre code { background: none; border: none; padding: 0; color: #cbd5e1; font-size: 0.84rem; line-height: 1.6; }
+
+    footer { text-align: center; padding: 32px 24px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 24px; }
+    footer a { color: var(--muted); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 16px; font-size: 0.85rem; }
+    .footer-links a:hover { color: var(--text); }
+
+    @media (max-width: 700px) { .nav-links { gap: 14px; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="node.dev">
+      <a class="brand" href="/nodedev/"><img src="/nodedev/nodedev-logo.png" alt="" />node<span>.dev</span></a>
+      <div class="nav-links">
+        <a href="/nodedev/#features">Features</a>
+        <a href="/nodedev/setup/" aria-current="page">Setup</a>
+        <a href="/nodedev/support/">Support</a>
+        <a href="/nodedev/contact/">Contact me</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-head">
+      <p class="eyebrow">PC Setup &amp; Install</p>
+      <h1>Connect your PC in a few steps<span class="dot">.</span></h1>
+      <p class="lead">node.dev links your iPhone to a Windows PC over Tailscale — a private, encrypted network. The app walks you through this during onboarding; this page is the full reference.</p>
+      <div class="req">
+        <div class="req-chip"><strong>Windows PC</strong><span>The machine you code on</span></div>
+        <div class="req-chip"><strong>iPhone</strong><span>Running node.dev</span></div>
+        <div class="req-chip"><strong>Tailscale</strong><span>Free account, both devices</span></div>
+      </div>
+    </div>
+
+    <section class="step">
+      <p class="step-num">Step 1</p>
+      <h2>Install Tailscale</h2>
+      <p>Install Tailscale on <span class="hl">both</span> the Windows PC and the iPhone, then sign in to the <span class="hl">same tailnet</span> on each. Tailscale is a zero-config encrypted mesh network — your devices talk directly and privately, and your PC is never exposed to the public internet.</p>
+      <p>Note your PC's MagicDNS name (e.g. <code>rog-pc</code>) or Tailscale IP (<code>100.x.y.z</code>). The setup script in Step 2 also prints this for you.</p>
+      <div class="callout">
+        <p><strong>If you use custom ACLs:</strong> allow your phone to reach the PC on ports <code>22</code> (SSH) and <code>9922</code> (key push). A restrictive ACL covering only port 22 will block the key-delivery step.</p>
+      </div>
+    </section>
+
+    <section class="step">
+      <p class="step-num">Step 2</p>
+      <h2>Run the PC setup script</h2>
+      <p>During onboarding, node.dev gives you a one-line command to paste into <span class="hl">PowerShell</span>. It pops a UAC prompt and relaunches itself as Administrator. You can also download the full script and review it first:</p>
+
+      <div class="download">
+        <div class="d-info">
+          <strong>setup.ps1</strong>
+          <span>The exact script node.dev runs on your PC. Read it before running.</span>
+        </div>
+        <a class="button primary" href="/nodedev/setup/setup.ps1" download>Download setup.ps1</a>
+      </div>
+
+      <h3>What the script does</h3>
+      <p>It is transparent and safe to re-run. In order, it:</p>
+      <ol class="steps-list">
+        <li>Installs and starts the Windows OpenSSH Server</li>
+        <li>Restricts SSH to Tailscale addresses (IPv4 + IPv6) via Windows Firewall</li>
+        <li>Hardens <code>sshd_config</code> for key-only auth — no passwords</li>
+        <li>Prints the address to type into the app, then waits to receive your phone's public key automatically</li>
+        <li>Verifies <code>sshd</code> is running</li>
+      </ol>
+      <div class="callout warn">
+        <p><strong>Keep the PowerShell window open.</strong> The script blocks at step 4 while it waits for the key from your phone. It times out after 10 minutes — if that happens, just re-run it and push again.</p>
+      </div>
+      <div class="callout">
+        <p>The script never truncates existing keys and only appends yours if it's not already present. It requires Administrator because installing the SSH server and editing firewall rules need elevation.</p>
+      </div>
+    </section>
+
+    <section class="step">
+      <p class="step-num">Step 3</p>
+      <h2>Pair your key in node.dev</h2>
+      <p>The app generates your device key automatically and stores the private key in the iPhone's hardware-backed Keychain — it never leaves the device. Enter the PC's Tailscale hostname or IP (the address the script printed) and tap <span class="hl">Push key to PC</span>.</p>
+      <p>The app sends the public key over Tailscale to the waiting listener, and the PC answers with its username and hostname so the next step is pre-filled. Optionally tap <span class="hl">Verify connection</span> to open a real SSH session and pin the host fingerprint.</p>
+      <p>If the push fails, copy the public key from the app and paste it manually into the <code>authorized_keys</code> file the script created.</p>
+    </section>
+
+    <section class="step">
+      <p class="step-num">Step 4</p>
+      <h2>Add your first host and connect</h2>
+      <p>The PC's hostname and Windows username are pre-filled from the pairing step. Confirm port <code>22</code> and save. SSH sessions land in PowerShell by default — you're connected.</p>
+    </section>
+
+    <section class="step">
+      <p class="step-num">Optional</p>
+      <h2>WSL and tmux</h2>
+      <p>WSL gives you a full Linux shell; tmux keeps sessions alive across disconnects. Run these <span class="hl">after</span> the steps above.</p>
+      <h3>Install WSL with Ubuntu (requires a reboot)</h3>
+      <pre><code>wsl --install -d Ubuntu</code></pre>
+      <h3>After reboot, launch Ubuntu and install tmux</h3>
+      <pre><code>sudo apt update &amp;&amp; sudo apt install tmux -y</code></pre>
+      <h3>Drop SSH sessions directly into WSL — PowerShell (Admin)</h3>
+      <pre><code>Set-Content -Path 'C:\ProgramData\ssh\sshd_config' -Value @'
+PubkeyAuthentication yes
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+ForceCommand wsl.exe
+
+Match Group administrators
+       AuthorizedKeysFile __PROGRAMDATA__/ssh/administrators_authorized_keys
+'@ -Encoding ascii
+Restart-Service sshd</code></pre>
+      <p>After this, new SSH sessions drop straight into WSL.</p>
+      <div class="callout">
+        <p>Stuck on a step? <a href="/nodedev/support/">Check the support page</a> or <a href="/nodedev/contact/">email me</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/nodedev/setup/">Setup</a>
+      <a href="/nodedev/support/">Support</a>
+      <a href="/nodedev/privacy/">Privacy</a>
+      <a href="/nodedev/contact/">Contact</a>
+    </div>
+    &copy; 2026 Heavy C Development Studio, LLC. All rights reserved.
+  </footer>
+</body>
+</html>
